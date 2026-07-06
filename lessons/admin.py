@@ -17,4 +17,3 @@ class LeccionAdmin(admin.ModelAdmin):
     search_fields = ('titulo', 'curso__nombre')
     prepopulated_fields = {"id_url": ("titulo",)} # Autocompleta la URL usando el título del tema
     inlines = [DiapositivaInline]
-

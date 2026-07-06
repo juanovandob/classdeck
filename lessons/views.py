@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_4004
+from django.shortcuts import render, get_object_or_404
 from .models import Curso, Leccion
 
 def visor_clases(request, id_url=None):
@@ -9,10 +9,12 @@ def visor_clases(request, id_url=None):
         # Si no hay un tema en la URL, busca la primera lección disponible en la plataforma
         leccion_activa = Leccion.objects.first()
     else:
-        leccion_activa = get_object_or_4004(Leccion, id_url=id_url)
+        leccion_activa = get_object_or_404(Leccion, id_url=id_url)
         
     context = {
         'leccion': leccion_activa,
         'cursos': cursos_disponibles,
     }
-    return render(request, 'presentacion.html', context)
+    return render(request, 'lessons/slide.html', context)
+
+
