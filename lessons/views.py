@@ -15,6 +15,7 @@ def visor_clases(request, id_url=None):
         'leccion': leccion_activa,
         'cursos': cursos_disponibles,
     }
+    
     return render(request, 'lessons/slide.html', context)
 
 

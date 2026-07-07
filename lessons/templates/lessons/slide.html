@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ clase.titulo|default:"Plataforma de Clases" }}</title>
+<title>{{ leccion.titulo|default:"Plataforma de Clases" }}</title>
 <style>
   :root { --fs: 16px; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -130,8 +130,8 @@
 </div>
 
 <div class="slide-container">
-  {% for diapo in clase.diapositivas.all %}
-  <div class="slide {% if loop.first %}active{% endif %}" id="s{{ loop.index }}">
+  {% for diapo in leccion.diapositivas.all %}
+  <div class="slide {% if forloop.first %}active{% endif %}" id="s{{ forloop.counter }}">
     <div class="slide-title">{{ diapo.titulo }}</div>
     
     <div class="slide-content-body">
@@ -155,10 +155,10 @@
 <div class="nav-bar">
   <button class="btn-nav" id="btnPrev" onclick="changeSlide(-1)" disabled>← Anterior</button>
   <div class="slide-indicator">
-    <div>Diapositiva <strong id="slideNum">1</strong> de <strong id="slideTotal">{{ clase.diapositivas.all|length }}</strong></div>
+    <div>Diapositiva <strong id="slideNum">1</strong> de <strong id="slideTotal">{{ leccion.diapositivas.all|length }}</strong></div>
     <div class="dots" id="dots"></div>
   </div>
-  <button class="btn-nav" id="btnNext" onclick="changeSlide(1)" {% if clase.diapositivas.all|length <= 1 %}disabled{% endif %}>Siguiente →</button>
+  <button class="btn-nav" id="btnNext" onclick="changeSlide(1)" {% if leccion.diapositivas.all|length <= 1 %}disabled{% endif %}>Siguiente →</button>
 </div>
 
 <script>
